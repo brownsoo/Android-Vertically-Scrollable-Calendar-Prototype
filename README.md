@@ -3,7 +3,7 @@
 This is the Android sample project making the Vertically scrollable calendar for study.
 
 ### Check point 1
-I created the base date to sync page position with particular date.
+I create the base date to sync page position with particular date. And I also create the base position in middle of thousands pages.
 
 ```java
 /** Default year to calculate the page position */
@@ -12,6 +12,12 @@ final static int BASE_YEAR = 2015;
 final static int BASE_MONTH = Calendar.JANUARY;
 /** Calendar instance based on default year and month */
 final Calendar BASE_CAL;
+/** Page numbers to reuse */
+final static int PAGES = 5;
+/** Loops, we think 1000 may be infinite scroll. */
+final static int LOOPS = 1000;
+/** position basis */
+final static int BASE_POSITION = PAGES * LOOPS / 2;
 ...
 Calendar base = Calendar.getInstance();
 base.set(BASE_YEAR, BASE_MONTH, 1);
@@ -20,7 +26,7 @@ BASE_CAL = base;
 ```
 
 ### Check point 2
-Then, we can get the particular date with page position.
+Then, we can get the particular date by page position.
 
 ```java
 public YearMonth getYearMonth(int position) {
@@ -30,8 +36,34 @@ public YearMonth getYearMonth(int position) {
 }
 ```
 
+### Check point 3
+We can get the particular page position by given date.
 
+```java
+/**
+* Get the page position by given date
+* @param year 4 digits number of year
+* @param month month number
+* @return page position
+*/
+public int getPosition(int year, int month) {
+  Calendar cal = Calendar.getInstance();
+  cal.set(year, month, 1);
+  return BASE_POSITION + howFarFromBase(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+}
 
+/**
+* How many months exist from the base month to the given values?
+* @param year the year to compare with the base year
+* @param month the month to compare with the base month
+* @return counts of month
+*/
+private int howFarFromBase(int year, int month) {
+  int disY = (year - BASE_YEAR) * 12;
+  int disM = month - BASE_MONTH;
+  return disY + disM;
+}
+```
 
 
 In this project, I use [`VerticalViewPager-1`](VerticalViewPager-1) for just vertical view pager. And I refer to ['SimpleInfiniteCarousel'](SimpleInfiniteCarousel) to make a simple infinite carousel with ViewPager on Android.
