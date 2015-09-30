@@ -177,14 +177,14 @@ public class MonthlyFragment extends Fragment {
         final static int BASE_YEAR = 2015;
         /** Default month to calculate the page position */
         final static int BASE_MONTH = Calendar.JANUARY;
+        /** Calendar instance based on default year and month */
+        final Calendar BASE_CAL;
         /** Page numbers to reuse */
         final static int PAGES = 5;
-        /** Loops, we think 1000 may be infinite scroll. */
+        /** Loops, I think 1000 may be infinite scroll. */
         final static int LOOPS = 1000;
         /** position basis */
         final static int BASE_POSITION = PAGES * LOOPS / 2;
-        /** Calendar instance based on default year and month */
-        final Calendar BASE_CAL;
         /** previous position */
         private int previousPosition;
         
@@ -201,7 +201,7 @@ public class MonthlyFragment extends Fragment {
         }
         
         /**
-         * Year and Month
+         * Get the particular date by page position
          * @param position page position
          * @return YearMonth
          */
@@ -212,7 +212,7 @@ public class MonthlyFragment extends Fragment {
         }
         
         /**
-         * Get page position
+         * Get the page position by given date
          * @param year 4 digits number of year
          * @param month month number
          * @return page position
