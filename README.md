@@ -3,7 +3,7 @@
 This is the Android sample project making the Vertically scrollable calendar for study.
 You can see sample [video](https://youtu.be/sHpk8f0WY7U).
 
-### Check point 1
+### Check logic point 1
 I create the base date to sync page position with particular date. And I also create the base position in middle of thousands pages.
 
 ```java
@@ -26,7 +26,7 @@ BASE_CAL = base;
 ...
 ```
 
-### Check point 2
+### Check logic point 2
 Then, we can get the particular date by page position.
 
 ```java
@@ -37,7 +37,7 @@ public YearMonth getYearMonth(int position) {
 }
 ```
 
-### Check point 3
+### Check logic point 3
 We can get the particular page position by given date.
 
 ```java
@@ -69,9 +69,13 @@ private int howFarFromBase(int year, int month) {
 
 In this project, I use [`VerticalViewPager-1`](VerticalViewPager-1) for just vertical view pager. And I refer to ['SimpleInfiniteCarousel'](SimpleInfiniteCarousel) to make a simple infinite carousel with ViewPager on Android.
 
-I am not good at english. please let me know the misspelled comments in my code.
+#### Sorry
+I am not good at english. please let me know the misspelled comments in my code.^^;
+
+
 
 ## 세로 스크롤 달력 프로토타입 안드로이드 예제
+
 이 저장소는 안드로이드에서 세로 스크롤이 가능한 달력을 만들기 위해 만든 목업샘플입니다.
 관련 내용을 제 블로그에서 더 확인하실 수 있습니다. [한수댁 작업실](http://blog.hansune.com/595)
 
