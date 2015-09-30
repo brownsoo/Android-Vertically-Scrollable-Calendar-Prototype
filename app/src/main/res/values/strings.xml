@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Calendar Proto</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="weather_icon">Weather icon</string>
+    <string name="event_icon">Event icon</string>
+    <string name="add_thing">일정추가</string>
+    <string name="daily">일간</string>
+    <string name="weekly">주간</string>
+    <string name="monthly">월간</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="month">월</string>
+
+</resources>

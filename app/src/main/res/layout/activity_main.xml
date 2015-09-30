@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <Button
+            android:id="@+id/main_add_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:text="@string/add_thing"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/main_monthly_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@android:drawable/ic_menu_month"
+            android:text="@string/monthly"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/main_weekly_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@android:drawable/ic_menu_week"
+            android:text="@string/weekly"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/main_daily_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@android:drawable/ic_menu_day"
+            android:text="@string/daily"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/this_month_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottom"
+        android:layout_below="@+id/this_month_tv">
+        
+        <fragment 
+            android:id="@+id/monthly"
+            android:name="com.hansune.calendarproto.MonthlyFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        
+    </FrameLayout>
+
+</RelativeLayout>
