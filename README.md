@@ -1,6 +1,7 @@
 # Android Vertically Scrollable Calendar Prototype
 
 This is the Android sample project making the Vertically scrollable calendar for study.
+You can see sample [video](https://youtu.be/sHpk8f0WY7U).
 
 ### Check point 1
 I create the base date to sync page position with particular date. And I also create the base position in middle of thousands pages.
@@ -14,7 +15,7 @@ final static int BASE_MONTH = Calendar.JANUARY;
 final Calendar BASE_CAL;
 /** Page numbers to reuse */
 final static int PAGES = 5;
-/** Loops, we think 1000 may be infinite scroll. */
+/** Loops, I think 1000 may be infinite scroll. */
 final static int LOOPS = 1000;
 /** position basis */
 final static int BASE_POSITION = PAGES * LOOPS / 2;
