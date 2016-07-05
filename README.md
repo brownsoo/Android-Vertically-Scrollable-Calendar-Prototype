@@ -74,7 +74,7 @@ private int howFarFromBase(int year, int month) {
 ```
 
 
-In this project, I use [`VerticalViewPager-1`](VerticalViewPager-1) for just vertical view pager. And I refer to ['SimpleInfiniteCarousel'](SimpleInfiniteCarousel) to make a simple infinite carousel with ViewPager on Android.
+In this project, I use [`VerticalViewPager`](https://github.com/castorflex/VerticalViewPager) for just vertical view pager. And I refer to ['SimpleInfiniteCarousel'](https://github.com/mrleolink/SimpleInfiniteCarousel) to make a simple infinite carousel with ViewPager on Android.
 
 #### Sorry
 I am not good at english. please let me know the misspelled comments in my code.^^;
