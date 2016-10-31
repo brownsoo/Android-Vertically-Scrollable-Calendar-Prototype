@@ -23,6 +23,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.hansune.calendarproto.cal.OneDayView;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends FragmentActivity {
@@ -51,6 +56,12 @@ public class MainActivity extends FragmentActivity {
             public void onChange(int year, int month) {
                 HLog.d(TAG, CLASS, "onChange " + year + "." + month);
                 thisMonthTv.setText(year + "." + (month + 1));
+            }
+
+            @Override
+            public void onDayClick(OneDayView dayView) {
+                Toast.makeText(MainActivity.this, "Click  " + dayView.get(Calendar.MONTH) + "/" + dayView.get(Calendar.DAY_OF_MONTH), Toast.LENGTH_SHORT)
+                    .show();
             }
         });
 

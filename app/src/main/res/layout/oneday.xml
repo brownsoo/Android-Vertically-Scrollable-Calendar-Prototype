@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lineframe"
+    android:background="@drawable/day_cell_bg"
     android:padding="5dp" >
 
     <LinearLayout

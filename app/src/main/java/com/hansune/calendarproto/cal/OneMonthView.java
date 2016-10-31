@@ -36,10 +36,31 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
     private static final String NAME = "OneMonthView";
     private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
 
+    public interface OnClickDayListener {
+        void onClick(OneDayView odv);
+    }
+
     private int mYear;
     private int mMonth;
     private ArrayList<LinearLayout> weeks = null;
     private ArrayList<OneDayView> dayViews = null;
+    private OnClickDayListener onClickDayListener;
+    private final OnClickDayListener dummyClickDayListener = new OnClickDayListener() {
+        @Override
+        public void onClick(OneDayView odv) {
+            HLog.d(TAG, CLASS, "Dummy OnClickDayListener-- click on day " + odv.get(Calendar.MONTH) + "/" + odv.get(Calendar.DAY_OF_MONTH));
+        }
+    };
+
+    public void setOnClickDayListener(OnClickDayListener onClickDayListener) {
+        if (onClickDayListener != null) {
+            this.onClickDayListener = onClickDayListener;
+        }
+        else {
+            this.onClickDayListener = dummyClickDayListener;
+        }
+    }
+
 
     public OneMonthView(Context context) {
         this(context, null);
@@ -53,6 +74,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         super(context, attrs, defStyle);
 
         setOrientation(LinearLayout.VERTICAL);
+        onClickDayListener = dummyClickDayListener;
 
         //Prepare many day-views enough to prevent recreation.
         if(weeks == null) {
@@ -231,8 +253,9 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        OneDayView ov = (OneDayView) v;
-        HLog.d(TAG, CLASS, "click " + ov.get(Calendar.MONTH) + "/" + ov.get(Calendar.DAY_OF_MONTH));
+        OneDayView odv = (OneDayView) v;
+        HLog.d(TAG, CLASS, "click " + odv.get(Calendar.MONTH) + "/" + odv.get(Calendar.DAY_OF_MONTH));
+        this.onClickDayListener.onClick(odv);
 
     }
 

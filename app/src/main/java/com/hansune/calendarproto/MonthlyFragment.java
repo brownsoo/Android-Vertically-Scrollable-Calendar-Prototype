@@ -16,7 +16,6 @@
 
 package com.hansune.calendarproto;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,11 +24,14 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hansune.calendarproto.cal.OneDayData;
+import com.hansune.calendarproto.cal.OneDayView;
 import com.hansune.calendarproto.cal.OneMonthView;
 
-import fr.castorflex.android.verticalviewpager.VerticalViewPager;
-
 import java.util.Calendar;
+
+import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
 
 
@@ -59,6 +61,12 @@ public class MonthlyFragment extends Fragment {
          * @param month number of month (0~11)
          */
         void onChange(int year, int month);
+
+        /**
+         * Callback for clicking on a day cell
+         * @param dayView OneDayView instance that dispatching this callback
+         */
+        void onDayClick(OneDayView dayView);
     }
     
     /**
@@ -67,6 +75,10 @@ public class MonthlyFragment extends Fragment {
     private OnMonthChangeListener dummyListener = new OnMonthChangeListener() {
         @Override
         public void onChange(int year, int month) {}
+
+        @Override
+        public void onDayClick(OneDayView dayView) {}
+
     };
     
     private OnMonthChangeListener listener = dummyListener;
@@ -145,16 +157,25 @@ public class MonthlyFragment extends Fragment {
         else this.listener = listener;
     }
 
+
+    private OneMonthView.OnClickDayListener onClickDayListener = new OneMonthView.OnClickDayListener() {
+        @Override
+        public void onClick(OneDayView odv) {
+            listener.onDayClick(odv);
+        }
+    };
+
+
     /**
      * Object to preserve year and month
      * @author Brownsoo
      *
      */
     public class YearMonth {
-        public int year;
-        public int month;
+        int year;
+        int month;
         
-        public YearMonth(int year, int month) {
+        YearMonth(int year, int month) {
             this.year = year;
             this.month = month;
         }
@@ -251,6 +272,7 @@ public class MonthlyFragment extends Fragment {
             container.addView(monthViews[position]);
             
             monthViews[position].make(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+            monthViews[position].setOnClickDayListener(onClickDayListener);
             
             return monthViews[position];
         }
@@ -258,6 +280,7 @@ public class MonthlyFragment extends Fragment {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             HLog.d(TAG, CLASS, "destroyItem " + position);
+            ((OneMonthView) object).setOnClickDayListener(null);
             container.removeView((View) object);
         }        
         
