@@ -24,10 +24,10 @@ package com.hansune.calendarproto.cal;
 public class WeatherInfo {
 
     public enum Weather {
-        SUNSHINE, 
-        SUN_CLOUND, 
-        CLOUDY, 
-        RAINNY, 
+        SUNSHINE,
+        SUN_CLOUDY,
+        CLOUDY,
+        RAINY,
         SNOW
     }
 }

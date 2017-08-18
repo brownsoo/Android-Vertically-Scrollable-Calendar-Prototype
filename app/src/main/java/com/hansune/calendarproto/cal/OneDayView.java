@@ -26,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hansune.calendarproto.HLog;
 import com.hansune.calendarproto.MConfig;
 import com.hansune.calendarproto.R;
 
@@ -181,10 +180,10 @@ public class OneDayView extends RelativeLayout {
         msgTv.setText((one.getMessage()==null)?"":one.getMessage());
         switch(one.weather) {
         case CLOUDY :
-        case SUN_CLOUND :
+        case SUN_CLOUDY:
             weatherIv.setImageResource(R.drawable.cloudy);
             break;
-        case RAINNY :
+        case RAINY:
             weatherIv.setImageResource(R.drawable.rainy);
             break;
         case SNOW :

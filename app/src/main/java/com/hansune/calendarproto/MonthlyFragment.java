@@ -25,7 +25,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hansune.calendarproto.cal.OneDayData;
 import com.hansune.calendarproto.cal.OneDayView;
 import com.hansune.calendarproto.cal.OneMonthView;
 
@@ -128,7 +127,7 @@ public class MonthlyFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        adapter = new MonthlySlidePagerAdapter(context, mYear, mMonth);
+        adapter = new MonthlySlidePagerAdapter(context);
     }
 
     @Override
@@ -188,28 +187,28 @@ public class MonthlyFragment extends Fragment {
      * @author Brownsoo
      *
      */
-    class MonthlySlidePagerAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
+    private class MonthlySlidePagerAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
 
         @SuppressWarnings("unused")
         private Context mContext;
         
         private OneMonthView[] monthViews;
         /** Default year to calculate the page position */
-        final static int BASE_YEAR = 2015;
+        final static int BASE_YEAR = 2017;
         /** Default month to calculate the page position */
         final static int BASE_MONTH = Calendar.JANUARY;
         /** Calendar instance based on default year and month */
         final Calendar BASE_CAL;
         /** Page numbers to reuse */
         final static int PAGES = 5;
-        /** Loops, I think 1000 may be infinite scroll. */
-        final static int LOOPS = 1000;
+        /** Inner virtual pages, I think it may be infinite scroll. */
+        final static int TOTAL_PAGES = Integer.MAX_VALUE;
         /** position basis */
-        final static int BASE_POSITION = PAGES * LOOPS / 2;
+        final static int BASE_POSITION = TOTAL_PAGES / 2;
         /** previous position */
         private int previousPosition;
         
-        public MonthlySlidePagerAdapter(Context context, int startYear, int startMonth) {
+        public MonthlySlidePagerAdapter(Context context) {
             this.mContext = context;
             Calendar base = Calendar.getInstance();
             base.set(BASE_YEAR, BASE_MONTH, 1);
@@ -286,7 +285,7 @@ public class MonthlyFragment extends Fragment {
         
         @Override
         public int getCount() {
-            return PAGES * LOOPS;
+            return TOTAL_PAGES;
         }
         
         @Override
