@@ -4,7 +4,7 @@ This is the Android sample project making the Vertically scrollable calendar for
 You can see sample [video](https://youtu.be/sHpk8f0WY7U).
 
 
-## 세로 스크롤 달력 프로토타입 안드로이드 예제
+## 세로형 무한 스크롤 달력 프로토타입 (안드로이드)
 
 이 저장소는 안드로이드에서 세로 스크롤이 가능한 달력을 만들기 위해 만든 목업샘플입니다.
 관련 내용을 제 블로그에서 더 확인하실 수 있습니다. [한수댁 작업실](http://hansune.tistory.com/595)
