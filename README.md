@@ -1,8 +1,8 @@
 # Android Vertically Scrollable Calendar Prototype
 
 This is the Android sample project making the Vertically scrollable calendar for study.
-You can see sample [video](https://youtu.be/sHpk8f0WY7U).
 
+![Proto Image](proto.png)
 
 ## 세로형 무한 스크롤 달력 프로토타입 (안드로이드)
 
@@ -74,7 +74,9 @@ private int howFarFromBase(int year, int month) {
 ```
 
 
-In this project, I use [`VerticalViewPager`](https://github.com/castorflex/VerticalViewPager) for just vertical view pager. And I refer to ['SimpleInfiniteCarousel'](https://github.com/mrleolink/SimpleInfiniteCarousel) to make a simple infinite carousel with ViewPager on Android.
+In this project, I embed [`VerticalViewPager`](https://github.com/castorflex/VerticalViewPager) for just vertical view pager. And I refer to ['SimpleInfiniteCarousel'](https://github.com/mrleolink/SimpleInfiniteCarousel) to make a simple infinite carousel with ViewPager on Android.
+
+You can see sample [video](https://youtu.be/sHpk8f0WY7U).
 
 #### Sorry
 I am not good at english. please let me know the misspelled comments in my code.^^;
