@@ -2,7 +2,7 @@
 
 This is the Android sample project making the Vertically scrollable calendar for study.
 
-![Proto Image](proto.png)
+![Proto Image](proto.gif)
 
 ## 세로형 무한 스크롤 달력 프로토타입 (안드로이드)
 
