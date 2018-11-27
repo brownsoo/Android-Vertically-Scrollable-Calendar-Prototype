@@ -1,5 +1,7 @@
 # Android Vertically Scrollable Calendar Prototype
 
+[![codebeat badge](https://codebeat.co/badges/a450e182-9250-4d6f-8c45-7819d6d90b31)](https://codebeat.co/projects/github-com-brownsoo-android-vertically-scrollable-calendar-prototype-master)
+
 This is the Android sample project making the Vertically scrollable calendar for study.
 
 ![Proto Image](proto.gif)
