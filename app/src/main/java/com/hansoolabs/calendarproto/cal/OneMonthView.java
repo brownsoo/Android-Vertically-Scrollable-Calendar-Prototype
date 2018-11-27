@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015 Hansoo Lab.
+* Copyright (C) 2018 HansooLabs.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,14 +27,15 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
+
 /**
  * View to display a month
  */
 public class OneMonthView extends LinearLayout implements View.OnClickListener {
 
     private static final String TAG = MConfig.TAG;
-    private static final String NAME = "OneMonthView";
-    private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
+    private final String klass = "OneMonthView@" + Integer.toHexString(hashCode());
 
     public interface OnClickDayListener {
         void onClick(OneDayView odv);
@@ -42,25 +43,16 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
 
     private int mYear;
     private int mMonth;
+    @Nullable
     private ArrayList<LinearLayout> weeks = null;
+    @Nullable
     private ArrayList<OneDayView> dayViews = null;
-    private OnClickDayListener onClickDayListener;
-    private final OnClickDayListener dummyClickDayListener = new OnClickDayListener() {
-        @Override
-        public void onClick(OneDayView odv) {
-            HLog.d(TAG, CLASS, "Dummy OnClickDayListener-- click on day " + odv.get(Calendar.MONTH) + "/" + odv.get(Calendar.DAY_OF_MONTH));
-        }
-    };
+    @Nullable
+    private OnClickDayListener onClickDayListener = null;
 
-    public void setOnClickDayListener(OnClickDayListener onClickDayListener) {
-        if (onClickDayListener != null) {
-            this.onClickDayListener = onClickDayListener;
-        }
-        else {
-            this.onClickDayListener = dummyClickDayListener;
-        }
+    public void setOnClickDayListener(@Nullable OnClickDayListener listener) {
+        this.onClickDayListener = listener;
     }
-
 
     public OneMonthView(Context context) {
         this(context, null);
@@ -72,10 +64,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
 
     public OneMonthView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
         setOrientation(LinearLayout.VERTICAL);
-        onClickDayListener = dummyClickDayListener;
-
         //Prepare many day-views enough to prevent recreation.
         if(weeks == null) {
 
@@ -117,7 +106,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
             make(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
         }
 
-        HLog.i(TAG, CLASS, "new instance");
+        HLog.i(TAG, klass, "new instance");
     }
 
     /**
@@ -171,7 +160,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         ArrayList<OneDayData> oneDayDataList = new ArrayList<>();
         
         cal.add(Calendar.DAY_OF_MONTH, Calendar.SUNDAY - dayOfWeek);//Move to first day of first week
-        //HLog.d(TAG, CLASS, "first day : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
+        //HLog.d(TAG, klass, "first day : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
 
         /* add previous month */
         int seekDay;
@@ -186,7 +175,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
         
-        //HLog.d(TAG, CLASS, "this month : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
+        //HLog.d(TAG, klass, "this month : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
         /* add this month */
         for(int i=0; i < maxOfMonth; i++) {
             OneDayData one = new OneDayData();
@@ -217,7 +206,6 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         
         int count = 0;
         for(OneDayData one : oneDayDataList) {
-            
             if(count % 7 == 0) {
                 addView(weeks.get(count / 7));
             }
@@ -232,30 +220,18 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         this.setWeightSum(getChildCount());
 
 
-        HLog.d(TAG, CLASS, "<<<<< making timeMillis : " + (System.currentTimeMillis() - makeTime));
+        HLog.d(TAG, klass, "<<<<< making timeMillis : " + (System.currentTimeMillis() - makeTime));
  
     }
 
 
-    protected String doubleString(int value) {
-
-        String temp;
- 
-        if(value < 10){
-            temp = "0"+ String.valueOf(value);
-             
-        }else {
-            temp = String.valueOf(value);
-        }
-        return temp;
-    }
- 
     @Override
     public void onClick(View v) {
-
         OneDayView odv = (OneDayView) v;
-        HLog.d(TAG, CLASS, "click " + odv.get(Calendar.MONTH) + "/" + odv.get(Calendar.DAY_OF_MONTH));
-        this.onClickDayListener.onClick(odv);
+        HLog.d(TAG, klass, "click " + odv.get(Calendar.MONTH) + "/" + odv.get(Calendar.DAY_OF_MONTH));
+        if (onClickDayListener != null) {
+            this.onClickDayListener.onClick(odv);
+        }
 
     }
 

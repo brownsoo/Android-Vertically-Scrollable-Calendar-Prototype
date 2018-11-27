@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015 HansooLabs.
+* Copyright (C) 2018 HansooLabs.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 package com.hansoolabs.calendarproto;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -49,7 +49,7 @@ public class MainActivity extends FragmentActivity {
         thisMonthTv = findViewById(R.id.this_month_tv);
         
         MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
-        mf.setOnMonthChangeListener(new MonthlyFragment.OnMonthChangeListener() {
+        mf.setOnMonthChangeListener(new MonthlyFragment.MonthlyFragmentListener() {
             
             @Override
             public void onChange(int year, int month) {

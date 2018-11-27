@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015 Hansoo Lab.
+* Copyright (C) 2018 HansooLabs.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -29,6 +29,9 @@ import android.widget.TextView;
 import com.hansoolabs.calendarproto.MConfig;
 import com.hansoolabs.calendarproto.R;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * View to display a day
  * @author Brownsoo
@@ -41,22 +44,24 @@ public class OneDayView extends RelativeLayout {
     private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
     
     /** number text field */
+    @NonNull
     private TextView dayTv;
     /** message text field*/
+    @NonNull
     private TextView msgTv;
     /** Weather icon */
+    @NonNull
     private ImageView weatherIv;
     /** Value object for a day info */
+    @NonNull
     private OneDayData one;
 
     /**
      * OneDayView constructor
      * @param context context
      */
-    public OneDayView(Context context) {
-        super(context);
-        init(context);
- 
+    public OneDayView(@NonNull Context context) {
+        this(context, null);
     }
 
     /**
@@ -64,19 +69,12 @@ public class OneDayView extends RelativeLayout {
      * @param context context
      * @param attrs AttributeSet
      */
-    public OneDayView(Context context, AttributeSet attrs) {
+    public OneDayView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context);
-    }
- 
-    private void init(Context context)
-    {
-
         View v = View.inflate(context, R.layout.oneday, this);
-        
-        dayTv = (TextView) v.findViewById(R.id.onday_dayTv);
-        weatherIv = (ImageView) v.findViewById(R.id.onday_weatherIv);
-        msgTv = (TextView) v.findViewById(R.id.onday_msgTv);
+        dayTv = v.findViewById(R.id.onday_dayTv);
+        weatherIv = v.findViewById(R.id.onday_weatherIv);
+        msgTv = v.findViewById(R.id.onday_msgTv);
         one = new OneDayData();
         
     }
