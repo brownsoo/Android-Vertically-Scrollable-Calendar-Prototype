@@ -9,11 +9,9 @@ This is the Android sample project making the Vertically scrollable calendar for
 ## 세로형 무한 스크롤 달력 프로토타입 (안드로이드)
 
 이 저장소는 안드로이드에서 세로 스크롤이 가능한 달력을 만들기 위해 만든 목업샘플입니다.
-관련 내용을 제 블로그에서 더 확인하실 수 있습니다. [한수댁 작업실](http://hansune.tistory.com/595)
-
 
 ### Check logic point 1
-I create the base date to sync page position with particular date. And I also create the base position in middle of thousands pages.
+특정 날짜와 페이지 위치를 동기화하기 위해 기본 날짜를 만듭니다. 그리고 수천 페이지 중간에 기본 위치도 생성합니다.
 
 ```java
 /** Default year to calculate the page position */
@@ -36,7 +34,7 @@ BASE_CAL = base;
 ```
 
 ### Check logic point 2
-Then, we can get the particular date by page position.
+그런 다음 페이지 위치별로 특정 날짜를 얻을 수 있습니다.
 
 ```java
 public YearMonth getYearMonth(int position) {
@@ -47,7 +45,7 @@ public YearMonth getYearMonth(int position) {
 ```
 
 ### Check logic point 3
-We can get the particular page position by given date.
+주어진 날짜별로 특정 페이지 위치를 얻을 수 있습니다.
 
 ```java
 /**
@@ -80,8 +78,6 @@ In this project, I embed [`VerticalViewPager`](https://github.com/castorflex/Ver
 
 You can see sample [video](https://youtu.be/sHpk8f0WY7U).
 
-#### Sorry
-I am not good at english. please let me know the misspelled comments in my code.^^;
 
 
 
