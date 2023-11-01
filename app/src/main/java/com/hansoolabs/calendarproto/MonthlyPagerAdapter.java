@@ -28,9 +28,9 @@ class MonthlyPagerAdapter extends PagerAdapter
     private static final String TAG = MConfig.TAG;
     private final String klass = "MonthlyPagerAdapter@" + Integer.toHexString(hashCode());
     @Nullable
-    private MonthlyView monthlyView;
+    private final MonthlyView monthlyView;
     @NonNull
-    private OneMonthView[] monthViews;
+    private final OneMonthView[] monthViews;
     /** Default year to calculate the page position */
     private final static int BASE_YEAR = 2018;
     /** Default month to calculate the page position */
@@ -47,7 +47,6 @@ class MonthlyPagerAdapter extends PagerAdapter
     /** previous position */
     private int previousPosition;
 
-    @SuppressWarnings("WeakerAccess")
     public MonthlyPagerAdapter(@NonNull Context context, @Nullable MonthlyView monthlyView) {
         this.monthlyView = monthlyView;
         Calendar base = Calendar.getInstance();
@@ -65,7 +64,6 @@ class MonthlyPagerAdapter extends PagerAdapter
      * @param position page position
      * @return YearMonth
      */
-    @SuppressWarnings("WeakerAccess")
     public YearMonth getYearMonth(int position) {
         Calendar cal = (Calendar)BASE_CAL.clone();
         cal.add(Calendar.MONTH, position - BASE_POSITION);
@@ -78,7 +76,6 @@ class MonthlyPagerAdapter extends PagerAdapter
      * @param month month number
      * @return page position
      */
-    @SuppressWarnings("WeakerAccess")
     public int getPosition(int year, int month) {
         Calendar cal = Calendar.getInstance();
         cal.set(year, month, 1);

@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/day_cell_bg"
-    android:padding="5dp" >
+    android:padding="5dp">
 
     <LinearLayout
         android:id="@+id/oneday_topGroup"
@@ -15,7 +16,7 @@
             android:id="@+id/onday_dayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="16"
+            tools:text="16"
             android:textSize="16sp" />
 
         <View
@@ -28,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/lineframe"
-            android:text="음 00.16"
-            android:textSize="10sp"
+            tools:text="음 00.16"
+            android:textSize="12sp"
             android:visibility="gone" />
         
     </LinearLayout>
@@ -47,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:orientation="horizontal" >
 
         <ImageView
@@ -63,7 +64,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:contentDescription="@string/weather_icon"
         android:src="@drawable/cloudy" />
 

@@ -1,20 +1,3 @@
-/*
-* Copyright (C) 2018 HansooLabs.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-
 package com.hansoolabs.calendarproto;
 
 import android.os.Bundle;
@@ -42,13 +25,10 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Button addButton = findViewById(R.id.main_add_bt);
-//        Button monthButton = findViewById(R.id.main_monthly_bt);
-//        Button weekButton = findViewById(R.id.main_weekly_bt);
-//        Button dayButton = findViewById(R.id.main_daily_bt);
         thisMonthTv = findViewById(R.id.this_month_tv);
         
         MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
+        assert mf != null;
         mf.setOnMonthChangeListener(new MonthlyFragment.MonthlyFragmentListener() {
             
             @Override

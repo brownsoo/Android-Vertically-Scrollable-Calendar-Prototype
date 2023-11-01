@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    namespace "com.hansoolabs.calendarproto"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.hansoolabs.calendarproto"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode 100
         versionName "1.0"
     }
@@ -18,8 +18,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }

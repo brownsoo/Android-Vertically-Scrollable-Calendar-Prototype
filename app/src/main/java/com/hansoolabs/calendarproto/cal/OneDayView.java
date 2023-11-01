@@ -1,19 +1,3 @@
-/*
-* Copyright (C) 2018 HansooLabs.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
 package com.hansoolabs.calendarproto.cal;
 
 import java.util.Calendar;
@@ -26,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hansoolabs.calendarproto.MConfig;
 import com.hansoolabs.calendarproto.R;
 
 import androidx.annotation.NonNull;
@@ -36,22 +19,19 @@ import androidx.annotation.Nullable;
  * View to display a day
  * @author Brownsoo
  *
+ * @noinspection unused
  */
 public class OneDayView extends RelativeLayout {
- 
-    private static final String TAG = MConfig.TAG;
-    private static final String NAME = "OneDayView";
-    private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
-    
+
     /** number text field */
     @NonNull
-    private TextView dayTv;
+    private final TextView dayTv;
     /** message text field*/
     @NonNull
-    private TextView msgTv;
+    private final TextView msgTv;
     /** Weather icon */
     @NonNull
-    private ImageView weatherIv;
+    private final ImageView weatherIv;
     /** Value object for a day info */
     @NonNull
     private OneDayData one;
@@ -176,20 +156,11 @@ public class OneDayView extends RelativeLayout {
         }
 
         msgTv.setText((one.getMessage()==null)?"":one.getMessage());
-        switch(one.weather) {
-        case CLOUDY :
-        case SUN_CLOUDY:
-            weatherIv.setImageResource(R.drawable.cloudy);
-            break;
-        case RAINY:
-            weatherIv.setImageResource(R.drawable.rainy);
-            break;
-        case SNOW :
-            weatherIv.setImageResource(R.drawable.snowy);
-            break;
-        case SUNSHINE :
-            weatherIv.setImageResource(R.drawable.sunny);
-            break;
+        switch (one.weather) {
+            case CLOUDY, SUN_CLOUDY -> weatherIv.setImageResource(R.drawable.cloudy);
+            case RAINY -> weatherIv.setImageResource(R.drawable.rainy);
+            case SNOW -> weatherIv.setImageResource(R.drawable.snowy);
+            case SUNSHINE -> weatherIv.setImageResource(R.drawable.sunny);
         }
         
     }

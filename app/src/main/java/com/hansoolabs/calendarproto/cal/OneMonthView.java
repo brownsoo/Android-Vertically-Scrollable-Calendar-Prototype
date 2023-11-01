@@ -1,19 +1,3 @@
-/*
-* Copyright (C) 2018 HansooLabs.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
 package com.hansoolabs.calendarproto.cal;
 
 import java.util.ArrayList;
@@ -27,10 +11,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
  * View to display a month
+ * @noinspection unused
  */
 public class OneMonthView extends LinearLayout implements View.OnClickListener {
 
@@ -43,10 +29,10 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
 
     private int mYear;
     private int mMonth;
-    @Nullable
-    private ArrayList<LinearLayout> weeks = null;
-    @Nullable
-    private ArrayList<OneDayView> dayViews = null;
+    @NonNull
+    final private ArrayList<LinearLayout> weeks = new ArrayList<>(6); //Max 6 weeks in a month
+    @NonNull
+    final private ArrayList<OneDayView> dayViews = new ArrayList<>(42); // 7 days * 6 weeks = 42 days
     @Nullable
     private OnClickDayListener onClickDayListener = null;
 
@@ -66,40 +52,34 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         super(context, attrs, defStyle);
         setOrientation(LinearLayout.VERTICAL);
         //Prepare many day-views enough to prevent recreation.
-        if(weeks == null) {
+        LinearLayout ll = null;
+        for(int i=0; i<42; i++) {
 
-            weeks = new ArrayList<>(6); //Max 6 weeks in a month
-            dayViews = new ArrayList<>(42); // 7 days * 6 weeks = 42 days
-
-            LinearLayout ll = null;
-            for(int i=0; i<42; i++) {
-
-                if(i % 7 == 0) {
-                    //Create new week layout
-                    ll = new LinearLayout(context);
-                    LinearLayout.LayoutParams params
-                            = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
-                    params.weight = 1;
-                    ll.setOrientation(LinearLayout.HORIZONTAL);
-                    ll.setLayoutParams(params);
-                    ll.setWeightSum(7);
-
-                    weeks.add(ll);
-                }
-
+            if(i % 7 == 0) {
+                //Create new week layout
+                ll = new LinearLayout(context);
                 LinearLayout.LayoutParams params
-                        = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+                        = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
                 params.weight = 1;
+                ll.setOrientation(LinearLayout.HORIZONTAL);
+                ll.setLayoutParams(params);
+                ll.setWeightSum(7);
 
-                OneDayView ov = new OneDayView(context);
-                ov.setLayoutParams(params);
-                ov.setOnClickListener(this);
-
-                ll.addView(ov);
-                dayViews.add(ov);
+                weeks.add(ll);
             }
+
+            LinearLayout.LayoutParams params
+                    = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+            params.weight = 1;
+
+            OneDayView ov = new OneDayView(context);
+            ov.setLayoutParams(params);
+            ov.setOnClickListener(this);
+
+            ll.addView(ov);
+            dayViews.add(ov);
         }
-        
+
         //for Preview of Graphic editor
         if(isInEditMode()) {
             Calendar cal = Calendar.getInstance();
@@ -160,7 +140,6 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         ArrayList<OneDayData> oneDayDataList = new ArrayList<>();
         
         cal.add(Calendar.DAY_OF_MONTH, Calendar.SUNDAY - dayOfWeek);//Move to first day of first week
-        //HLog.d(TAG, klass, "first day : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
 
         /* add previous month */
         int seekDay;
@@ -175,7 +154,6 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
         
-        //HLog.d(TAG, klass, "this month : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
         /* add this month */
         for(int i=0; i < maxOfMonth; i++) {
             OneDayData one = new OneDayData();
@@ -186,15 +164,10 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         }
         
         /* add next month */
-        for(;;) {
-            if(cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
-                OneDayData one = new OneDayData();
-                one.setDay(cal);
-                oneDayDataList.add(one);
-            } 
-            else {
-                break;
-            }
+        while (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            OneDayData one = new OneDayData();
+            one.setDay(cal);
+            oneDayDataList.add(one);
             //add one day
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }

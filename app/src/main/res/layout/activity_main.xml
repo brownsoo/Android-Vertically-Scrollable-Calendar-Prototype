@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:drawableStart="@android:drawable/ic_menu_add"
             android:text="@string/add_thing"
             android:textSize="14sp" />
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_month"
+            android:drawableStart="@android:drawable/ic_menu_month"
             android:text="@string/monthly"
             android:textSize="14sp" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_week"
+            android:drawableStart="@android:drawable/ic_menu_week"
             android:text="@string/weekly"
             android:textSize="14sp" />
 
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_day"
+            android:drawableStart="@android:drawable/ic_menu_day"
             android:text="@string/daily"
             android:textSize="14sp" />
     </LinearLayout>
@@ -68,7 +68,7 @@
         android:layout_above="@+id/main_bottom"
         android:layout_below="@+id/this_month_tv">
         
-        <fragment 
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/monthly"
             android:name="com.hansoolabs.calendarproto.MonthlyFragment"
             android:layout_width="match_parent"

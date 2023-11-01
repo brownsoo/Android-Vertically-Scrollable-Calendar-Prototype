@@ -6,6 +6,7 @@
 
     <fr.castorflex.android.verticalviewpager.VerticalViewPager
         android:id="@+id/vviewPager"
+        android:contentDescription="@string/vertical_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
